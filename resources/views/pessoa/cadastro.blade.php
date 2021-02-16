@@ -37,7 +37,7 @@
                         <a class="nav-link active" href="{{ url("/cadastro") }}">Cadastro</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url('/new-cadastro') }}">New Cadastro</a>
+                        <a class="nav-link" href="{{ url('/') }}">Import</a>
                     </li>
 
                 </ul>

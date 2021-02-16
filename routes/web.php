@@ -18,4 +18,5 @@ Route::get('/', 'PessoaTempController@index');
 Route::get('/cadastro', 'PessoaController@create');
 Route::get('/cadastro/buscaPessoas', 'PessoaController@getPessoas');
 Route::post('/import', 'PessoaTempController@import');
+Route::post('/import-salvar', 'PessoaController@saveChecked')->name('import-salvar');
 Route::get('/limparTabela', 'PessoaTempController@limparTabela');

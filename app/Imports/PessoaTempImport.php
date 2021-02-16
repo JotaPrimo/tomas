@@ -20,8 +20,8 @@ class PessoaTempImport implements ToModel
             'sexo'         => $row[2],
             'rg'           => $row[3],
             'nis'          => $row[4],
-            'renda'        => $row[30],
-            'dt_nascimento' => $row[0]
+            'renda'        => $row[5],
+            'dt_nascimento' => $row[6]
         ]);
     }
 }

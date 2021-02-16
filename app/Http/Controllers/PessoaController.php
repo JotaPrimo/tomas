@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Pessoa;
+use App\PessoaTemp;
 use Illuminate\Http\Request;
 
 class PessoaController extends Controller
@@ -87,5 +88,37 @@ class PessoaController extends Controller
     {
         $p = Pessoa::all();
         return response()->json($p);
+    }
+
+    public function saveChecked(Request $request)
+    {
+
+        try {
+
+            $ids = $request->ids;
+
+            for ($i = 0; $i < count($ids); $i++)
+            {
+                $pessoaTemp = (new PessoaTemp())->find($ids[$i]);
+                $pessoa = new Pessoa();
+                $pessoa->nome = $pessoaTemp->nome;
+                $pessoa->cpf = $pessoaTemp->cpf;
+                $pessoa->nis = $pessoaTemp->nis;
+                $pessoa->rg = $pessoaTemp->rg;
+                $pessoa->sexo = $pessoaTemp->sexo;
+                $pessoa->renda = $pessoaTemp->renda;
+                $pessoa->dt_nascimento = $pessoaTemp->dt_nascimento;
+                $pessoa->save();
+            }
+
+            PessoaTemp::whereIn('id', $ids)->delete();
+
+            return redirect('/')->with('create', 'Dados salvos com sucesso');
+
+        } catch (\Exception $exception)
+        {
+            return redirect()->back()->with('salve-erro', 'Erro, não foi possivel salvar os dados');
+        }
+
     }
 }

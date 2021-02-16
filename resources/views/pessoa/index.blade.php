@@ -9,7 +9,7 @@
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" ></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
 
 
@@ -37,7 +37,7 @@
             <a class="nav-link active" href="{{ url("/cadastro") }}">Cadastro</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="{{ url('/new-cadastro') }}">New Cadastro</a>
+            <a class="nav-link" href="{{ url('/') }}">Import</a>
         </li>
 
     </ul>
@@ -55,6 +55,18 @@
                     </card>
 
                     <div class="card-body">
+
+                        @if(session()->has('create'))
+                            <div class="alert alert-success" role="alert">
+                                {{ session('create') }}
+                            </div>
+                        @endif
+
+                            @if(session()->has('salve-erro'))
+                                <div class="alert alert-danger" role="alert">
+                                    {{ session('salve-erro') }}
+                                </div>
+                            @endif
 
                         @if(session()->has('delete'))
                             <div class="alert alert-success" role="alert">
@@ -85,6 +97,7 @@
                             <input type="file" name="file" required class="form-control">
                             <button class="btn btn-primary mt-2" type="submit" >Importar</button>
 
+                            <button class="btn btn-success mt-2" type="button" id="salveAllSelected">Salvar selecionados</button>
 
                             <button type="button" class="btn btn-warning mt-2" data-toggle="modal" data-target="#exampleModal">
                                 Limpar tabela
@@ -140,6 +153,7 @@
                     <thead>
 
                     <tr>
+                        <th><input type="checkbox" id="checkAll"></th>
                         <th scope="col">Nome</th>
                         <th scope="col">RG</th>
                         <th scope="col">CPF</th>
@@ -154,7 +168,10 @@
                     <tbody>
 
                     @foreach($pessoas as $pessoa)
-                        <tr>
+                        <tr id="sid{{$pessoa->id}}">
+                            <td>
+                                <input type="checkbox" name="ids" class="checkBoxClass" value="{{ $pessoa->id }}">
+                            </td>
                             <td> {{ $pessoa->nome }} </td>
                             <td> {{ $pessoa->rg }} </td>
                             <td> {{ $pessoa->cpf }} </td>
@@ -179,6 +196,43 @@
 
 </div>
 </body>
+
+
+<script>
+    $(function (e) {
+        $("#checkAll").click(function () {
+            $(".checkBoxClass").prop('checked', $(this).prop('checked'));
+        });
+    });
+
+    $('#salveAllSelected').click(function (e) {
+
+        e.preventDefault();
+        var allids = [];
+        $("input:checkbox[name=ids]:checked").each(function () {
+            allids.push($(this).val());
+        });
+
+        $.ajax({
+
+            url: '{{ route('import-salvar') }}',
+            type: 'POST',
+            data: {
+                ids:allids,
+                _token:$("input[name=_token]").val()
+            },
+
+            success: function (response)
+            {
+                $.each(allids, function(key, val){
+                    $('#sid'+val).remove();
+                });
+            }
+        });
+
+
+    })
+</script>
 
 
 </html>
