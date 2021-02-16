@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'PessoaTempController@index');
 Route::get('/cadastro', 'PessoaController@create');
+Route::post('/cadastro/store', 'PessoaController@store')->name('cadastro-store');
 Route::get('/cadastro/buscaPessoas', 'PessoaController@getPessoas');
 Route::post('/import', 'PessoaTempController@import');
 Route::post('/import-salvar', 'PessoaController@saveChecked')->name('import-salvar');

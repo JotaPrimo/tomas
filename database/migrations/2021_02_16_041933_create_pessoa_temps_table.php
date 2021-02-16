@@ -15,12 +15,12 @@ class CreatePessoaTempsTable extends Migration
     {
         Schema::create('pessoa_temps', function (Blueprint $table) {
             $table->id();
-            $table->text("nome");
-            $table->text("cpf");
-            $table->text("rg");
-            $table->text("nis");
-            $table->char("sexo");
-            $table->text("renda")->nullable();
+            $table->bigInteger("nome");
+            $table->string("cpf", 14)->unique();
+            $table->string("rg", 14)->unique();
+            $table->string("nis", 14)->unique();
+            $table->integer("sexo");
+            $table->float("renda", 10, 2)->nullable();
             $table->text("dt_nascimento");
             $table->timestamps();
         });

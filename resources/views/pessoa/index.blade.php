@@ -56,6 +56,7 @@
 
                     <div class="card-body">
 
+
                         @if(session()->has('create'))
                             <div class="alert alert-success" role="alert">
                                 {{ session('create') }}
@@ -68,9 +69,9 @@
                                 </div>
                             @endif
 
-                        @if(session()->has('delete'))
-                            <div class="alert alert-success" role="alert">
-                                {{ session('delete') }}
+                        @if(session()->has('erro-create'))
+                            <div class="alert alert-danger" role="alert">
+                                {{ session('erro-create') }}
                             </div>
                         @endif
 
@@ -95,6 +96,7 @@
 
 
                             <input type="file" name="file" required class="form-control">
+
                             <button class="btn btn-primary mt-2" type="submit" >Importar</button>
 
                             <button class="btn btn-success mt-2" type="button" id="salveAllSelected">Salvar selecionados</button>

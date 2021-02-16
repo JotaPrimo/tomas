@@ -4,8 +4,10 @@ namespace App\Imports;
 
 use App\PessoaTemp;
 use Maatwebsite\Excel\Concerns\ToModel;
+use Maatwebsite\Excel\Concerns\WithCustomCsvSettings;
+use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
-class PessoaTempImport implements ToModel
+class PessoaTempImport implements ToModel, WithCustomCsvSettings
 {
     /**
     * @param array $row
@@ -23,5 +25,14 @@ class PessoaTempImport implements ToModel
             'renda'        => $row[5],
             'dt_nascimento' => $row[6]
         ]);
+    }
+
+
+    public function getCsvSettings(): array
+    {
+        return [
+            'delimiter' => ",",
+            'escape_character' => ','
+        ];
     }
 }

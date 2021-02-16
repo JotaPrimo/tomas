@@ -32,6 +32,12 @@
                 </div>
             @endif
 
+                @if(session()->has('delete'))
+                    <div class="alert alert-danger" role="alert">
+                        {{ session('delete') }}
+                    </div>
+                @endif
+
                 <ul class="nav">
                     <li class="nav-item">
                         <a class="nav-link active" href="{{ url("/cadastro") }}">Cadastro</a>
@@ -57,7 +63,10 @@
                                 <div class="card-body">
 
 
-                                    <form>
+                                    <form action="{{ route('cadastro-store') }}" method="POST">
+
+                                        @csrf
+
                                         <div class="form-row">
 
                                             <div class="form-group col-md-4">
@@ -88,14 +97,20 @@
                                                 <input type="text" class="form-control" placeholder="NIS..." name="nis" id="nis">
                                             </div>
 
-                                            <div class="form-group col-md-2">
-                                                <label for="inputEmail4">Sexo</label>
-                                                <input type="text" class="form-control" name="sexo" placeholder="Sexo...." id="sexo">
+                                            <div class="form-group col-md-2 s12" style="margin-top: 1.9rem;!important;">
+
+                                                <select class="browser-default" required name="sexo" id="sexo">
+                                                    <option value="" disabled selected>Sexo...</option>
+                                                    <option value="1">Masculino</option>
+                                                    <option value="2">Feminino</option>
+
+                                                </select>
+
                                             </div>
 
                                             <div class="form-group col-md-2">
                                                 <label for="inputEmail4">Renda</label>
-                                                <input type="text" class="form-control" name="sexo" placeholder="Renda...." id="sexo">
+                                                <input type="text" class="form-control" name="renda" placeholder="Renda...." id="sexo">
                                             </div>
 
                                             <div class="form-group col-md-4">

@@ -36,7 +36,24 @@ class PessoaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        try {
+            $pessoa = new Pessoa();
+            $pessoa->nome = $request->nome;
+            $pessoa->cpf = $request->cpf;
+            $pessoa->sexo = (int) $request->sexo;
+            $pessoa->rg = $request->rg;
+            $pessoa->nis =$request->nis;;
+            $pessoa->renda = (float) str_replace(',', '.', $request->renda);
+            $pessoa->dt_nascimento = $request->dt_nascimento;
+            $pessoa->save();
+
+
+        } catch (\Exception $exception)
+        {
+            dd($exception);
+            return redirect()->back()->with('erro-create', 'Erro, não foi possivel salvar os dados');
+        }
     }
 
     /**
@@ -68,21 +85,8 @@ class PessoaController extends Controller
      * @param  \App\Pessoa  $pessoa
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Pessoa $pessoa)
-    {
-        //
-    }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Pessoa  $pessoa
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Pessoa $pessoa)
-    {
-        //
-    }
+
 
     public function getPessoas()
     {
