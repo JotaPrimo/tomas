@@ -1,0 +1,60 @@
+-- phpMyAdmin SQL Dump
+-- version 5.0.2
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1:3306
+-- Generation Time: Feb 14, 2021 at 07:21 PM
+-- Server version: 5.7.31
+-- PHP Version: 7.4.9
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `tomas`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pessoa_temps`
+--
+
+DROP TABLE IF EXISTS `pessoa_temps`;
+CREATE TABLE IF NOT EXISTS `pessoa_temps` (
+  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `nome` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `cpf` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `rg` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `nis` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `sexo` char(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `renda` float(10,2) NOT NULL,
+  `dt_nascimento` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=62 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `pessoa_temps`
+--
+
+INSERT INTO `pessoa_temps` (`id`, `nome`, `cpf`, `rg`, `nis`, `sexo`, `renda`, `dt_nascimento`, `created_at`, `updated_at`) VALUES
+(61, 'Regina Helena', '684.120.487-65', '545454', '212544478', 'F', 1500.00, '28/01/1995', '2021-02-14 21:49:02', '2021-02-14 21:49:02'),
+(60, 'Damares Costa', '023.681.749-25', '879845', '845441256', 'F', 2541.00, '28/01/1995', '2021-02-14 21:49:02', '2021-02-14 21:49:02'),
+(59, 'Jose silva', '426.789.159-78', '123211', '321458746', 'M', 454.78, '28/01/1995', '2021-02-14 21:49:02', '2021-02-14 21:49:02'),
+(58, 'João neto', '741.852.963-45', '113212', '784811593', 'M', 4785.45, '28/01/1995', '2021-02-14 21:49:02', '2021-02-14 21:49:02'),
+(56, 'Jailson Primo', '789.456.123-45', '778989', '154788877', 'M', 1000.00, '28/01/1995', '2021-02-14 21:49:02', '2021-02-14 21:49:02'),
+(57, 'Jessica helena Primo', '159.753.456-78', '454654', '154878791', 'F', 8787.45, '28/01/1995', '2021-02-14 21:49:02', '2021-02-14 21:49:02');
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
