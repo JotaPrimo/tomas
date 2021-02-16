@@ -48,10 +48,12 @@ class PessoaController extends Controller
             $pessoa->dt_nascimento = $request->dt_nascimento;
             $pessoa->save();
 
+            return redirect()->back()->with('create', 'Operação realizada com sucesso');
+
 
         } catch (\Exception $exception)
         {
-            dd($exception);
+
             return redirect()->back()->with('erro-create', 'Erro, não foi possivel salvar os dados');
         }
     }

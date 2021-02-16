@@ -106,6 +106,65 @@
                             </button>
 
 
+
+
+                       <div class="card mt-3">
+
+                           <div class="card-header">
+                               Configurar indices do arquivo
+                           </div>
+
+                           <div class="card-body">
+
+                               <div class="row">
+
+                                   <div class="col">
+                                       <label for="">Indice do nome</label>
+                                       <input type="number" class="form-control" name="indice_nome" value="0" placeholder="Posição do nome">
+                                   </div>
+
+                                   <div class="col">
+                                       <label for="">Indice do CPF</label>
+                                       <input type="number" class="form-control" name="indice_cpf" value="1" placeholder="Indice do nome">
+                                   </div>
+
+                                   <div class="col">
+                                       <label for="">Indice do RG</label>
+                                       <input type="number" class="form-control" name="indice_rg" value="2" placeholder="Indice do nome">
+                                   </div>
+
+                                   <div class="col">
+                                       <label for="">Indice do NIS</label>
+                                       <input type="number" class="form-control" name="indice_nis" value="3" placeholder="Indice do nome">
+                                   </div>
+
+                               </div>
+
+                               <div class="row mt-2">
+
+                                   <div class="col">
+                                       <label for="">Indice do Sexo</label>
+                                       <input type="number" class="form-control" name="indice_sexo" value="4" placeholder="Indice do nome">
+                                   </div>
+
+                                   <div class="col">
+                                       <label for="">Indice da renda</label>
+                                       <input type="number" class="form-control" name="indice_renda" value="5" placeholder="Indice do nome">
+                                   </div>
+
+
+                                   <div class="col">
+                                       <label for="">Indice Data de nascimento</label>
+                                       <input type="number" class="form-control" name="indice_dt_nascimento" value="6" placeholder="Indice do nome">
+                                   </div>
+
+                               </div>
+
+                           </div>
+
+                       </div>
+
+
                         </form>
 
                     </div>

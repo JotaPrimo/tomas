@@ -16,9 +16,9 @@ class CreatePessoaTempsTable extends Migration
         Schema::create('pessoa_temps', function (Blueprint $table) {
             $table->id();
             $table->bigInteger("nome");
-            $table->string("cpf", 14)->unique();
-            $table->string("rg", 14)->unique();
-            $table->string("nis", 14)->unique();
+            $table->string("cpf", 14);
+            $table->string("rg", 14);
+            $table->string("nis", 14);
             $table->integer("sexo");
             $table->float("renda", 10, 2)->nullable();
             $table->text("dt_nascimento");

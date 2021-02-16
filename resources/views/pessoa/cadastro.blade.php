@@ -50,6 +50,9 @@
 
                 <div class="container">
 
+
+
+
                     <div class="row">
 
                         <div class="col-12">
@@ -110,7 +113,7 @@
 
                                             <div class="form-group col-md-2">
                                                 <label for="inputEmail4">Renda</label>
-                                                <input type="text" class="form-control" name="renda" placeholder="Renda...." id="sexo">
+                                                <input type="text" class="form-control" name="renda" placeholder="Renda...." id="renda">
                                             </div>
 
                                             <div class="form-group col-md-4">

@@ -48,18 +48,19 @@ class PessoaTempController extends Controller
             $objeto = fopen($path, 'r');
 
             $primeira_linha = true;
-
+            // vinculo coluna csv com coluna table
             while (($dados = fgetcsv($objeto, 1000, ";")) !== FALSE) {
+
                 if ($primeira_linha == false) {
 
                     $pessoaTemp = new PessoaTemp();
-                    $pessoaTemp->nome = utf8_encode($dados[0]);
-                    $pessoaTemp->cpf = utf8_encode($dados[1]);
-                    $pessoaTemp->sexo = utf8_encode($dados[2]);
-                    $pessoaTemp->rg = utf8_encode($dados[3]);
-                    $pessoaTemp->nis = utf8_encode($dados[4]);;
-                    $pessoaTemp->renda = str_replace(',', '.', $dados[6]);
-                    $pessoaTemp->dt_nascimento = utf8_encode($dados[7]);
+                    $pessoaTemp->nome = $dados[$request->indice_nome];
+                    $pessoaTemp->cpf = $dados[$request->indice_cpf];
+                    $pessoaTemp->sexo = $dados[$request->indice_rg];
+                    $pessoaTemp->rg = $dados[$request->indice_nis];
+                    $pessoaTemp->nis = $dados[$request->indice_sexo];;
+                    $pessoaTemp->renda = str_replace(',', '.', $dados[$request->indice_renda]);
+                    $pessoaTemp->dt_nascimento = $dados[$request->indice_dt_nascimento];
                     $pessoaTemp->save();
 
                 }
@@ -67,6 +68,7 @@ class PessoaTempController extends Controller
                 $primeira_linha = false;
 
             }
+            //
 
             return back()->with('ok', 'Importação realizada com sucesso');
 
@@ -78,5 +80,7 @@ class PessoaTempController extends Controller
             return back()->with('error', 'Erro. Falha na importação ', compact('pessoas'));
         }
     }
+
+
 
 }
